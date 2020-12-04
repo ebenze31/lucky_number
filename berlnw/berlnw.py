@@ -56,31 +56,30 @@ while active_page >  page:
         ## หาข้อมูลใน TABLE
         table = soup.find("div", {"class": "tableshow"})
 
-        # # เบอร์
-        # phone_all = table.find_all("form", {"action": "/ทำนายเบอร์"})
-        # for ph in phone_all:
-        #     phone = ph
-        #     key_phone = ph.find('input')['value']
-        #     value_phone = ph.find("a", {"class": "phone"}).text
-        #     # print("key >>", key_phone)
-        #     # print("value >>", value_phone)
-        #
-        #     mycursor = mydb.cursor()
-        #
-        #     sql = "INSERT INTO berlnw (created_at, phone_number) VALUES (%s, %s)"
-        #     val = (time, value_phone)
-        #     mycursor.execute(sql, val)
-        #
-        #     mydb.commit()
+        # เบอร์
+        phone_all = table.find_all("form", {"action": "/ทำนายเบอร์"})
+        for ph in phone_all:
+            key_phone = ph.find('input')['value']
+            value_phone = ph.find("a", {"class": "phone"}).text
+            # print("key >>", key_phone)
+            # print("value >>", value_phone)
+
+            mycursor = mydb.cursor()
+
+            sql = "INSERT INTO berlnw (created_at, phone_number) VALUES (%s, %s)"
+            val = (time, value_phone)
+            mycursor.execute(sql, val)
+
+            mydb.commit()
 
         # เครือข่าย
-        img_old = table.find_all('img')['src']
-        print(img_old)
-
-        # img_old_split_1 = img_old.split("_")
-        # img_old_split_2 = img_old_split_1[-1].split(".")
-        # network = img_old_split_2[0]
-        # print("IMG >>",network)
+        img_all = table.find_all('img')
+        for img in img_all:
+            img_old = str(img)
+            img_old_split_1 = img_old.split("_")
+            img_old_split_2 = img_old_split_1[-1].split(".")
+            network = img_old_split_2[0]
+            print("IMG >>", network)
 
         # # เพศ
         # gender = table.find("td", {"class": "gender"}).text
