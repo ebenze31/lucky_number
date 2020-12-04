@@ -30,8 +30,8 @@ mydb.commit()
 print(mycursor.rowcount, "บรรทัด ที่ลบ")
 
 #loop
-active_page = 1
-page = 0
+active_page = 26
+page = 25
 while active_page >  page:
 
     url = url_home + str(active_page) + "&sort_limit=1000&v="
@@ -56,31 +56,53 @@ while active_page >  page:
         ## หาข้อมูลใน TABLE
         table = soup.find("div", {"class": "tableshow"})
 
+        # # เบอร์
+        # phone_all = table.find_all("form", {"action": "/ทำนายเบอร์"})
+        # for ph in phone_all:
+        #     phone = ph
+        #     key_phone = ph.find('input')['value']
+        #     value_phone = ph.find("a", {"class": "phone"}).text
+        #     # print("key >>", key_phone)
+        #     # print("value >>", value_phone)
+        #
+        #     mycursor = mydb.cursor()
+        #
+        #     sql = "INSERT INTO berlnw (created_at, phone_number) VALUES (%s, %s)"
+        #     val = (time, value_phone)
+        #     mycursor.execute(sql, val)
+        #
+        #     mydb.commit()
+
         # เครือข่าย
-        img_old = table.find('img')['src']
-        img_old_split_1 = img_old.split("_")
-        img_old_split_2 = img_old_split_1[-1].split(".")
-        network = img_old_split_2[0]
-        print("IMG >>",network)
+        img_old = table.find_all('img')['src']
+        print(img_old)
 
-        # เบอร์
-        phone = table.find('a').text
-        print("PHONE >>", phone)
+        # img_old_split_1 = img_old.split("_")
+        # img_old_split_2 = img_old_split_1[-1].split(".")
+        # network = img_old_split_2[0]
+        # print("IMG >>",network)
 
-        # เพศ
-        gender = table.find("td", {"class": "gender"}).text
-        print("GENDER >>", gender)
-
-        # ราคา
-        p = table.find("td", {"class": "price"}).text
-        p_split = p.split(".")
-        price = int(p_split[0])
-        print("PRICE >>",price)
-
-        # สถานะ
-        status = table.find("td", {"class": "status"}).text
-        print("status >>", status)
-
+        # # เพศ
+        # gender = table.find("td", {"class": "gender"}).text
+        # print("GENDER >>", gender)
+        #
+        # # ราคา
+        # p = table.find("td", {"class": "price"}).text
+        # p_split = p.split(".")
+        # price = int(p_split[0])
+        # print("PRICE >>",price)
+        #
+        # # สถานะ
+        # status_all = table.find_all("td", {"class": "status"})
+        # for sta in status_all:
+        #     status = sta
+        #     key_status = sta.find('button')['id']
+        #     value_status = sta.find("button", {"class": "reserves"}).text
+        #
+        #     print("key >>", key_status)
+        #     print("value >>", value_status)
+        #
+        #
         active_page += 1
         page += 1
 
