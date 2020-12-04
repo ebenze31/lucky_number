@@ -44,7 +44,7 @@ while active_page >  page:
     Property = soup.find("div",{"class":"getProperty"}).text
     Property_split = Property.split(" ")
     getProperty = Property_split[-1]
-    print("getProperty >>",getProperty)
+    #print("getProperty >>",getProperty)
 
     # เก็บข้อมูล
     if getProperty == "ไม่พบข้อมูล":
@@ -55,12 +55,31 @@ while active_page >  page:
 
         ## หาข้อมูลใน TABLE
         table = soup.find("div", {"class": "tableshow"})
+
         # เครือข่าย
         img_old = table.find('img')['src']
         img_old_split_1 = img_old.split("_")
         img_old_split_2 = img_old_split_1[-1].split(".")
         network = img_old_split_2[0]
         print("IMG >>",network)
+
+        # เบอร์
+        phone = table.find('a').text
+        print("PHONE >>", phone)
+
+        # เพศ
+        gender = table.find("td", {"class": "gender"}).text
+        print("GENDER >>", gender)
+
+        # ราคา
+        p = table.find("td", {"class": "price"}).text
+        p_split = p.split(".")
+        price = int(p_split[0])
+        print("PRICE >>",price)
+
+        # สถานะ
+        status = table.find("td", {"class": "status"}).text
+        print("status >>", status)
 
         active_page += 1
         page += 1
