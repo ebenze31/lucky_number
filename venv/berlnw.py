@@ -69,7 +69,7 @@ while True:
     price_arr = []
     status_arr = []
     print("active_page = ", active_page)
-    print("--------------------------")
+    # print("--------------------------")
 
     ## หาข้อมูลใน TABLE
     table = soup.find("div", {"class": "tableshow"})
@@ -94,7 +94,7 @@ while True:
         #     network = network_arr[i]
         # for network in network_arr:
         #     data_network = network
-    print(network_arr)
+    # print(network_arr)
 
 
     # เบอร์
@@ -112,7 +112,7 @@ while True:
         # for phone in phone_arr:
         #     data_phone = phone
             # print(data_phone)
-    print(phone_arr)
+    # print(phone_arr)
 
     # # เพศ
     # gender_all = table.find_all("td", {"class": "gender"})
@@ -140,7 +140,7 @@ while True:
         # for price in price_arr:
         #     data_price = price
             # print(data_price)
-    print(price_arr)
+    # print(price_arr)
 
 
     # สถานะ
