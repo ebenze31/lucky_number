@@ -31,7 +31,7 @@ soup = BeautifulSoup(home.text,'html.parser')
 
 # clear database
 mycursor = mydb.cursor()
-sql_delete = "DELETE FROM numbers"
+sql_delete = "DELETE FROM numbers2"
 mycursor.execute(sql_delete)
 mydb.commit()
 print(mycursor.rowcount, "บรรทัด ที่ลบ")
@@ -163,7 +163,7 @@ while True:
 
     mycursor = mydb.cursor()
     for i in range(len(phone_arr)):
-        sql1 = "INSERT INTO numbers (number, price, operator)" \
+        sql1 = "INSERT INTO numbers2 (number, price, operator)" \
                " VALUES (%s, %s, %s)"
         val1 = [
             (
