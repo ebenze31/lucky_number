@@ -6,6 +6,7 @@ import os
 import mysql.connector
 import datetime as dt
 import connect
+import math
 
 # user = "root"
 # password=""
@@ -134,7 +135,7 @@ while True:
         p_split_2 = p_split_1[0].split(">")
         price = p_split_2[1]
         #print("PRICE >>",price)
-        # price_arr = [price]
+        price = price + math.ceil(price*0.25/100)*100
         price_arr.append(price)
         # print(price_arr)
         # for price in price_arr:
